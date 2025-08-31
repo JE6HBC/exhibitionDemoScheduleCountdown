@@ -64,23 +64,15 @@
             letter-spacing: 5px;
             margin-bottom: 1rem;
             color: #ffffff;
-            border: 3px solid #ffffff;
-            padding: 1rem 2rem;
+            margin: 1rem 2rem;
             background: #000000;
-            border-radius: 12px;
         }
 
         .main-display {
             background: #000000;
-            border: 3px solid #ffffff;
-            border-radius: 20px;
-            padding: 3rem;
-            text-align: center;
-            position: relative;
-            flex: 1;
         }
 
-        .next-demo-label {
+        .next-performance-label {
             font-size: 6rem;
             color: #ffffff;
             margin-bottom: 1rem;
@@ -89,19 +81,27 @@
             font-weight: 700;
         }
 
+        .schedule-info {
+            font-size: 4rem;
+            color: #ffffff;
+            margin-bottom: 2rem;
+            font-weight: 500;
+        }
+
+        .countdown-label {
+            font-size: 4rem;
+            color: #ffffff;
+            margin-bottom: 1rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            font-weight: 400;
+        }
+
         .countdown {
             font-size: 14rem;
             font-weight: bold;
             color: #ffffff;
-            margin: 1rem 0;
             font-family: 'Courier New', monospace;
-        }
-
-        .next-time {
-            font-size: 4rem;
-            color: #ffffff;
-            margin-top: 1rem;
-            font-weight: 500;
         }
 
         .glitch {
@@ -120,16 +120,18 @@
         /* Responsive adjustments for different screen sizes */
         @media (max-width: 1600px) {
             .title { font-size: 6rem; letter-spacing: 6px; }
-            .next-demo-label { font-size: 5rem; }
+            .next-performance-label { font-size: 5rem; }
+            .schedule-info { font-size: 3.5rem; }
+            .countdown-label { font-size: 3.5rem; }
             .countdown { font-size: 12rem; }
-            .next-time { font-size: 3.5rem; }
         }
 
         @media (max-width: 1200px) {
             .title { font-size: 4rem; letter-spacing: 4px; }
-            .next-demo-label { font-size: 4rem; }
+            .next-performance-label { font-size: 4rem; }
+            .schedule-info { font-size: 3rem; }
+            .countdown-label { font-size: 3rem; }
             .countdown { font-size: 10rem; }
-            .next-time { font-size: 3rem; }
             .schedule-item { min-width: 140px; }
         }
 
@@ -143,9 +145,10 @@
         </header>
 
         <div class="main-display">
-            <div class="next-demo-label" id="nextDemoLabel">Next Performance In</div>
+            <div class="next-performance-label">Next performance starts at</div>
+            <div class="schedule-info" id="scheduleInfo">Loading...</div>
+            <div class="countdown-label">in</div>
             <div class="countdown" id="countdown">--:--:--</div>
-            <div class="next-time" id="nextTime">Loading next demo time...</div>
         </div>
     </div>
 
@@ -191,11 +194,11 @@
 
         // German translations and distortions
         const translations = {
-            'Next Performance In': 'Nächste Performance in'
+            'Next performance starts at': 'Nächste Performance beginnt um'
         };
 
         const distortedTranslations = {
-            'Next Performance In': 'Nächstə Pərfσrmαncə ιn'
+            'Next performance starts at': 'Nächstə Pərfσrmαncə bəgιnnt ʊm'
         };
 
         let scheduleData = [];
@@ -258,16 +261,19 @@
 
             document.getElementById('countdown').textContent = formatCountdown(timeDiff);
             
-            const timeString = nextDemo.toLocaleString('en-US', {
-                weekday: 'long',
-                year: 'numeric',
-                month: 'long',
-                day: 'numeric',
-                hour: '2-digit',
-                minute: '2-digit'
+            const dateString = nextDemo.toLocaleDateString('en-US', {
+                weekday: 'short',
+                month: 'short',
+                day: 'numeric'
             });
             
-            document.getElementById('nextTime').textContent = timeString;
+            const timeString = nextDemo.toLocaleTimeString('en-US', {
+                hour: 'numeric',
+                minute: '2-digit',
+                hour12: true
+            });
+            
+            document.getElementById('scheduleInfo').textContent = `${dateString} ${timeString}`;
         }
 
         // Update schedule display
@@ -315,7 +321,7 @@
         // Randomly trigger distortion
         function randomDistortion() {
             if (ENABLE_GERMAN_DISTORTION && Math.random() < 0.05) { // 5% chance every update
-                const elements = document.querySelectorAll('.next-demo-label');
+                const elements = document.querySelectorAll('.next-performance-label');
                 elements.forEach(el => {
                     // Store original text
                     const originalText = el.textContent;
@@ -343,10 +349,10 @@
             nextDemo = findNextDemo();
             
             // Set to English by default
-            document.getElementById('nextDemoLabel').textContent = 'Next Performance In';
+            document.querySelector('.next-performance-label').textContent = 'Next performance starts at';
             
             // Store original texts for distortion effects
-            originalTexts['Next Performance In'] = 'Next Performance In';
+            originalTexts['Next performance starts at'] = 'Next performance starts at';
             
             updateCountdown();
             
