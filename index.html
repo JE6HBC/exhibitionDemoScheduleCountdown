@@ -44,7 +44,7 @@
         }
 
         .title {
-            font-size: 3.5rem;
+            font-size: 5rem;
             font-weight: bold;
             text-transform: uppercase;
             letter-spacing: 5px;
@@ -59,7 +59,7 @@
             background: rgba(0, 0, 0, 0.8);
             border: 2px solid #333;
             border-radius: 20px;
-            padding: 4rem;
+            padding: 6rem;
             margin-bottom: 2rem;
             text-align: center;
             position: relative;
@@ -68,7 +68,7 @@
         }
 
         .next-demo-label {
-            font-size: 2.5rem;
+            font-size: 4rem;
             color: #00ff00;
             margin-bottom: 1.5rem;
             text-transform: uppercase;
@@ -82,7 +82,7 @@
         }
 
         .countdown {
-            font-size: 6rem;
+            font-size: 10rem;
             font-weight: bold;
             color: #ffffff;
             margin: 2rem 0;
@@ -91,7 +91,7 @@
         }
 
         .next-time {
-            font-size: 2.2rem;
+            font-size: 3rem;
             color: #0080ff;
             margin-top: 1.5rem;
         }
@@ -100,14 +100,14 @@
             background: rgba(0, 0, 0, 0.6);
             border: 1px solid #333;
             border-radius: 15px;
-            padding: 3rem;
+            padding: 4rem;
             backdrop-filter: blur(5px);
             flex: 1;
             min-height: 0;
         }
 
         .schedule-title {
-            font-size: 1.5rem;
+            font-size: 2.5rem;
             color: #00ff00;
             margin-bottom: 2rem;
             text-align: center;
@@ -116,19 +116,23 @@
         }
 
         .schedule-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            display: flex;
+            flex-direction: row;
+            justify-content: space-around;
             gap: 1.5rem;
-            max-height: 400px;
-            overflow-y: auto;
+            flex-wrap: nowrap;
+            overflow-x: auto;
         }
 
         .schedule-item {
             background: rgba(255, 255, 255, 0.05);
             border: 1px solid #444;
             border-radius: 10px;
-            padding: 1.5rem;
+            padding: 2rem;
             transition: all 0.3s ease;
+            flex: 1;
+            min-width: 200px;
+            text-align: center;
         }
 
         .schedule-item:hover {
@@ -147,13 +151,13 @@
         }
 
         .schedule-date {
-            font-size: 1.1rem;
+            font-size: 1.5rem;
             color: #888;
             margin-bottom: 0.5rem;
         }
 
         .schedule-time {
-            font-size: 1.5rem;
+            font-size: 2rem;
             color: #0080ff;
             font-weight: bold;
         }
@@ -171,24 +175,6 @@
             100% { transform: translate(0); }
         }
 
-        /* Scrollbar styling for schedule grid */
-        .schedule-grid::-webkit-scrollbar {
-            width: 8px;
-        }
-
-        .schedule-grid::-webkit-scrollbar-track {
-            background: rgba(255, 255, 255, 0.1);
-            border-radius: 4px;
-        }
-
-        .schedule-grid::-webkit-scrollbar-thumb {
-            background: #00ff00;
-            border-radius: 4px;
-        }
-
-        .schedule-grid::-webkit-scrollbar-thumb:hover {
-            background: #00cc00;
-        }
     </style>
 </head>
 <body>
@@ -346,6 +332,8 @@
                 return { ...item, datetime: demoTime };
             }).filter(demo => demo.datetime >= now)
               .sort((a, b) => a.datetime - b.datetime)
+              .slice(0, 6); // Show only next 6 performances to fit in frame
+              .sort((a, b) => a.datetime - b.datetime)
               .slice(0, 6); // Show only next 6 demonstrations to fit in frame
 
             demos.forEach((demo, index) => {
@@ -353,8 +341,6 @@
                 item.className = 'schedule-item';
                 
                 if (demo.datetime.getTime() === nextDemo?.getTime()) {
-                    item.classList.add('next');
-                }
 
                 const dateStr = demo.datetime.toLocaleDateString('en-US', {
                     weekday: 'short',
