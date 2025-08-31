@@ -228,7 +228,7 @@
     </div>
 
     <script>
-        // Configuration - Set to true for German distortion mode
+        // Configuration - Set to true to enable occasional German distortion effects
         const ENABLE_GERMAN_DISTORTION = true;
 
         // CSV data for demo schedules (today and tomorrow, 11 AM to 6 PM hourly)
@@ -281,6 +281,7 @@
         let scheduleData = [];
         let nextDemo = null;
         let countdownInterval = null;
+        let originalTexts = {};
 
         // Parse CSV data
         function parseCSV(csv) {
@@ -317,28 +318,11 @@
             return `${hours.toString().padStart(2, '0')}:${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}`;
         }
 
-        // Apply language distortion
-        function applyDistortion(text) {
-            if (!ENABLE_GERMAN_DISTORTION) return text;
-            
-            // Check if we have a distorted translation
-            if (distortedTranslations[text]) {
-                return distortedTranslations[text];
-            }
-            
-            // Check if we have a regular translation
-            if (translations[text]) {
-                return translations[text];
-            }
-            
-            return text;
-        }
-
         // Update countdown
         function updateCountdown() {
             if (!nextDemo) {
                 document.getElementById('countdown').textContent = '--:--:--';
-                document.getElementById('nextTime').textContent = applyDistortion('No upcoming demonstrations');
+                document.getElementById('nextTime').textContent = 'No upcoming demonstrations';
                 return;
             }
 
@@ -411,11 +395,25 @@
 
         // Randomly trigger distortion
         function randomDistortion() {
-            if (ENABLE_GERMAN_DISTORTION && Math.random() < 0.1) { // 10% chance every update
+            if (ENABLE_GERMAN_DISTORTION && Math.random() < 0.05) { // 5% chance every update
                 const elements = document.querySelectorAll('.next-demo-label, .schedule-title');
                 elements.forEach(el => {
+                    // Store original text
+                    const originalText = el.textContent;
+                    
+                    // Apply glitch effect
                     el.classList.add('glitch');
-                    setTimeout(() => el.classList.remove('glitch'), 300);
+                    
+                    // Temporarily show German distorted text
+                    if (distortedTranslations[originalText]) {
+                        el.textContent = distortedTranslations[originalText];
+                    }
+                    
+                    // Return to original text after glitch
+                    setTimeout(() => {
+                        el.classList.remove('glitch');
+                        el.textContent = originalText;
+                    }, 800);
                 });
             }
         }
@@ -425,9 +423,13 @@
             scheduleData = parseCSV(scheduleCSV);
             nextDemo = findNextDemo();
             
-            // Apply initial language settings
-            document.getElementById('nextDemoLabel').textContent = applyDistortion('Next Demonstration In');
-            document.querySelector('.schedule-title').textContent = applyDistortion('Upcoming Demonstrations');
+            // Set to English by default
+            document.getElementById('nextDemoLabel').textContent = 'Next Demonstration In';
+            document.querySelector('.schedule-title').textContent = 'Upcoming Demonstrations';
+            
+            // Store original texts for distortion effects
+            originalTexts['Next Demonstration In'] = 'Next Demonstration In';
+            originalTexts['Upcoming Demonstrations'] = 'Upcoming Demonstrations';
             
             updateScheduleDisplay();
             updateCountdown();
