@@ -12,12 +12,28 @@
         }
 
         body {
-            font-family: 'Courier New', monospace;
-            background: linear-gradient(135deg, #0a0a0a 0%, #1a1a1a 100%);
+            font-family: 'JetBrains Mono', 'Consolas', 'Monaco', 'Courier New', monospace;
+            background: #000000;
             color: #ffffff;
             height: 100vh;
             overflow-x: hidden;
             overflow-y: auto;
+            position: relative;
+        }
+
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: 
+                radial-gradient(circle at 20% 20%, rgba(0, 255, 255, 0.05) 0%, transparent 50%),
+                radial-gradient(circle at 80% 80%, rgba(0, 150, 255, 0.05) 0%, transparent 50%),
+                linear-gradient(180deg, transparent 0%, rgba(0, 255, 255, 0.02) 100%);
+            pointer-events: none;
+            z-index: -1;
         }
 
         .container {
@@ -36,11 +52,12 @@
         }
 
         .event-title {
-            font-size: 0.9rem;
-            color: #888;
+            font-size: 1.5rem;
+            color: #00BFFF;
             text-transform: uppercase;
-            letter-spacing: 1px;
+            letter-spacing: 3px;
             margin-bottom: 0.5rem;
+            font-weight: 300;
         }
 
         .title {
@@ -49,10 +66,15 @@
             text-transform: uppercase;
             letter-spacing: 5px;
             margin-bottom: 1rem;
-            background: linear-gradient(45deg, #00ff00, #0080ff, #ff0080);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
+            color: #FFFFFF;
+            text-shadow: 
+                0 0 10px #00BFFF,
+                0 0 20px #00BFFF,
+                0 0 30px #00BFFF;
+            border: 2px solid #00BFFF;
+            padding: 1rem 2rem;
+            background: rgba(0, 191, 255, 0.1);
+            border-radius: 0;
         }
 
         .main-display {
