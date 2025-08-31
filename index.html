@@ -333,8 +333,6 @@
             }).filter(demo => demo.datetime >= now)
               .sort((a, b) => a.datetime - b.datetime)
               .slice(0, 6); // Show only next 6 performances to fit in frame
-              .sort((a, b) => a.datetime - b.datetime)
-              .slice(0, 6); // Show only next 6 demonstrations to fit in frame
 
             demos.forEach((demo, index) => {
                 const item = document.createElement('div');
