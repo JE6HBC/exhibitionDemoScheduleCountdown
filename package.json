@@ -1,0 +1,10 @@
+{
+  "name": "exhibition-display",
+  "version": "1.0.0",
+  "description": "Self-contained HTML exhibition display",
+  "main": "index.html",
+  "scripts": {
+    "start": "echo 'Open index.html in your browser'"
+  },
+  "type": "module"
+}
