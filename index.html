@@ -85,7 +85,7 @@
         }
 
         .next-demo-label {
-            font-size: 2rem;
+            font-size: 2.5rem;
             color: #00ff00;
             margin-bottom: 1.5rem;
             text-transform: uppercase;
@@ -124,7 +124,7 @@
         }
 
         .schedule-title {
-            font-size: 2rem;
+            font-size: 1.5rem;
             color: #00ff00;
             margin-bottom: 2rem;
             text-align: center;
@@ -216,13 +216,13 @@
         </header>
 
         <div class="main-display">
-            <div class="next-demo-label" id="nextDemoLabel">Next Demonstration In</div>
+            <div class="next-demo-label" id="nextDemoLabel">Next Performance In</div>
             <div class="countdown" id="countdown">--:--:--</div>
             <div class="next-time" id="nextTime">Loading next demo time...</div>
         </div>
 
         <div class="schedule-list">
-            <h2 class="schedule-title">Upcoming Demonstrations</h2>
+            <h2 class="schedule-title">Upcoming Performances</h2>
             <div class="schedule-grid" id="scheduleGrid"></div>
         </div>
     </div>
@@ -269,13 +269,13 @@
 
         // German translations and distortions
         const translations = {
-            'Next Demonstration In': 'Nächste Demonstration in',
-            'Upcoming Demonstrations': 'Kommende Demonstrationen'
+            'Next Performance In': 'Nächste Performance in',
+            'Upcoming Performances': 'Kommende Performances'
         };
 
         const distortedTranslations = {
-            'Next Demonstration In': 'Nächstə Dəmonstrαtion ιn',
-            'Upcoming Demonstrations': 'Komməndə Dəmonstrαtionən'
+            'Next Performance In': 'Nächstə Pərfσrmαncə ιn',
+            'Upcoming Performances': 'Komməndə Pərfσrmαncəs'
         };
 
         let scheduleData = [];
@@ -322,7 +322,7 @@
         function updateCountdown() {
             if (!nextDemo) {
                 document.getElementById('countdown').textContent = '--:--:--';
-                document.getElementById('nextTime').textContent = 'No upcoming demonstrations';
+                document.getElementById('nextTime').textContent = 'No upcoming performances';
                 return;
             }
 
@@ -424,12 +424,12 @@
             nextDemo = findNextDemo();
             
             // Set to English by default
-            document.getElementById('nextDemoLabel').textContent = 'Next Demonstration In';
-            document.querySelector('.schedule-title').textContent = 'Upcoming Demonstrations';
+            document.getElementById('nextDemoLabel').textContent = 'Next Performance In';
+            document.querySelector('.schedule-title').textContent = 'Upcoming Performances';
             
             // Store original texts for distortion effects
-            originalTexts['Next Demonstration In'] = 'Next Demonstration In';
-            originalTexts['Upcoming Demonstrations'] = 'Upcoming Demonstrations';
+            originalTexts['Next Performance In'] = 'Next Performance In';
+            originalTexts['Upcoming Performances'] = 'Upcoming Performances';
             
             updateScheduleDisplay();
             updateCountdown();
