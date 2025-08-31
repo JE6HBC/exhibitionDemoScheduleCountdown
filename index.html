@@ -70,7 +70,7 @@
             flex-direction: column;
             justify-content: center;
             align-items: center;
-            gap: 1.8rem;
+            gap: 1.2rem;
         }
 
         .next-performance-label {
@@ -304,19 +304,13 @@
 
             document.getElementById('countdown').textContent = formatCountdown(timeDiff);
             
-            const dateString = nextDemo.toLocaleDateString('en-US', {
-                weekday: 'short',
-                month: 'short',
-                day: 'numeric'
-            });
-            
             const timeString = nextDemo.toLocaleTimeString('en-US', {
                 hour: 'numeric',
                 minute: '2-digit',
                 hour12: true
             });
             
-            document.getElementById('scheduleInfo').textContent = `${dateString} ${timeString}`;
+            document.getElementById('scheduleInfo').textContent = timeString;
         }
 
         // Update schedule display
