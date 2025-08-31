@@ -35,23 +35,6 @@
             position: relative;
         }
 
-        .header::before {
-            content: '';
-            position: absolute;
-            top: -15px;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 100px;
-            height: 2px;
-            background: linear-gradient(90deg, #00ff00, #0080ff, #ff0080);
-            animation: glow 2s ease-in-out infinite alternate;
-        }
-
-        @keyframes glow {
-            from { box-shadow: 0 0 5px #00ff00; }
-            to { box-shadow: 0 0 20px #ff0080, 0 0 30px #0080ff; }
-        }
-
         .event-title {
             font-size: 0.9rem;
             color: #888;
