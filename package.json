@@ -4,7 +4,9 @@
   "description": "Self-contained HTML exhibition display",
   "main": "index.html",
   "scripts": {
-    "start": "echo 'Open index.html in your browser'"
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview"
   },
   "type": "module"
 }
