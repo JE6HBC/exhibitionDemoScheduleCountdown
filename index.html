@@ -1,0 +1,531 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ars Electronica 2025 - Demo Schedule</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Courier New', monospace;
+            background: linear-gradient(135deg, #0a0a0a 0%, #1a1a1a 100%);
+            color: #ffffff;
+            min-height: 100vh;
+            overflow-x: hidden;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+
+        .header {
+            text-align: center;
+            margin-bottom: 3rem;
+            position: relative;
+        }
+
+        .header::before {
+            content: '';
+            position: absolute;
+            top: -20px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 100px;
+            height: 2px;
+            background: linear-gradient(90deg, #00ff00, #0080ff, #ff0080);
+            animation: glow 2s ease-in-out infinite alternate;
+        }
+
+        @keyframes glow {
+            from { box-shadow: 0 0 5px #00ff00; }
+            to { box-shadow: 0 0 20px #ff0080, 0 0 30px #0080ff; }
+        }
+
+        .title {
+            font-size: 2.5rem;
+            font-weight: bold;
+            text-transform: uppercase;
+            letter-spacing: 3px;
+            margin-bottom: 0.5rem;
+            background: linear-gradient(45deg, #00ff00, #0080ff, #ff0080);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .subtitle {
+            font-size: 1rem;
+            color: #888;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+
+        .main-display {
+            background: rgba(0, 0, 0, 0.8);
+            border: 2px solid #333;
+            border-radius: 20px;
+            padding: 3rem;
+            margin-bottom: 3rem;
+            text-align: center;
+            position: relative;
+            backdrop-filter: blur(10px);
+        }
+
+        .next-demo-label {
+            font-size: 1.5rem;
+            color: #00ff00;
+            margin-bottom: 1rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.7; }
+        }
+
+        .countdown {
+            font-size: 4rem;
+            font-weight: bold;
+            color: #ffffff;
+            margin: 1rem 0;
+            text-shadow: 0 0 20px #00ff00;
+            font-family: 'Courier New', monospace;
+        }
+
+        .next-time {
+            font-size: 1.8rem;
+            color: #0080ff;
+            margin-top: 1rem;
+        }
+
+        .controls {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 2rem;
+            margin-bottom: 3rem;
+        }
+
+        .toggle-container {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .toggle {
+            position: relative;
+            width: 60px;
+            height: 30px;
+            background: #333;
+            border-radius: 15px;
+            cursor: pointer;
+            transition: background 0.3s;
+        }
+
+        .toggle.active {
+            background: #00ff00;
+        }
+
+        .toggle-slider {
+            position: absolute;
+            top: 3px;
+            left: 3px;
+            width: 24px;
+            height: 24px;
+            background: #fff;
+            border-radius: 50%;
+            transition: transform 0.3s;
+        }
+
+        .toggle.active .toggle-slider {
+            transform: translateX(30px);
+        }
+
+        .schedule-list {
+            background: rgba(0, 0, 0, 0.6);
+            border: 1px solid #333;
+            border-radius: 15px;
+            padding: 2rem;
+            backdrop-filter: blur(5px);
+        }
+
+        .schedule-title {
+            font-size: 1.5rem;
+            color: #00ff00;
+            margin-bottom: 1.5rem;
+            text-align: center;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .schedule-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 1rem;
+        }
+
+        .schedule-item {
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid #444;
+            border-radius: 10px;
+            padding: 1rem;
+            transition: all 0.3s ease;
+        }
+
+        .schedule-item:hover {
+            border-color: #00ff00;
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(0, 255, 0, 0.3);
+        }
+
+        .schedule-item.next {
+            border-color: #ff0080;
+            background: rgba(255, 0, 128, 0.1);
+        }
+
+        .schedule-item.past {
+            opacity: 0.5;
+        }
+
+        .schedule-date {
+            font-size: 0.9rem;
+            color: #888;
+            margin-bottom: 0.5rem;
+        }
+
+        .schedule-time {
+            font-size: 1.2rem;
+            color: #0080ff;
+            font-weight: bold;
+        }
+
+        .status {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            font-size: 0.8rem;
+            color: #00ff00;
+            background: rgba(0, 0, 0, 0.8);
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            border: 1px solid #00ff00;
+        }
+
+        .glitch {
+            animation: glitch 0.3s ease-in-out;
+        }
+
+        @keyframes glitch {
+            0% { transform: translate(0); }
+            20% { transform: translate(-2px, 2px); }
+            40% { transform: translate(-2px, -2px); }
+            60% { transform: translate(2px, 2px); }
+            80% { transform: translate(2px, -2px); }
+            100% { transform: translate(0); }
+        }
+
+        @media (max-width: 768px) {
+            .countdown {
+                font-size: 2.5rem;
+            }
+            
+            .title {
+                font-size: 2rem;
+            }
+            
+            .controls {
+                flex-direction: column;
+                gap: 1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="status">SYSTEM ACTIVE</div>
+        
+        <header class="header">
+            <h1 class="title">Ars Electronica 2025</h1>
+            <p class="subtitle">Dog Robot Installation</p>
+        </header>
+
+        <div class="main-display">
+            <div class="next-demo-label" id="nextDemoLabel">Next Demonstration In</div>
+            <div class="countdown" id="countdown">--:--:--</div>
+            <div class="next-time" id="nextTime">Loading next demo time...</div>
+        </div>
+
+        <div class="controls">
+            <div class="toggle-container">
+                <span>German Distortion</span>
+                <div class="toggle" id="distortionToggle">
+                    <div class="toggle-slider"></div>
+                </div>
+            </div>
+        </div>
+
+        <div class="schedule-list">
+            <h2 class="schedule-title">Upcoming Demonstrations</h2>
+            <div class="schedule-grid" id="scheduleGrid"></div>
+        </div>
+    </div>
+
+    <script>
+        // CSV data for demo schedules (today and tomorrow, 11 AM to 6 PM hourly)
+        const scheduleCSV = `date,time
+2025-01-13,11:00
+2025-01-13,12:00
+2025-01-13,13:00
+2025-01-13,14:00
+2025-01-13,15:00
+2025-01-13,16:00
+2025-01-13,17:00
+2025-01-13,18:00
+2025-01-14,11:00
+2025-01-14,12:00
+2025-01-14,13:00
+2025-01-14,14:00
+2025-01-14,15:00
+2025-01-14,16:00
+2025-01-14,17:00
+2025-01-14,18:00`;
+
+        // German translations and distortions
+        const translations = {
+            'Next Demonstration In': 'Nächste Demonstration in',
+            'Upcoming Demonstrations': 'Kommende Demonstrationen',
+            'SYSTEM ACTIVE': 'SYSTEM AKTIV',
+            'Dog Robot Installation': 'Hunderoboter Installation'
+        };
+
+        const distortedTranslations = {
+            'Next Demonstration In': 'Nächstə Dəmonstrαtion ιn',
+            'Upcoming Demonstrations': 'Komməndə Dəmonstrαtionən',
+            'SYSTEM ACTIVE': 'SYSTƏM ΑKTIV',
+            'Dog Robot Installation': 'Hundərobotər Instαllαtion'
+        };
+
+        let isDistortionEnabled = false;
+        let scheduleData = [];
+        let nextDemo = null;
+        let countdownInterval = null;
+
+        // Parse CSV data
+        function parseCSV(csv) {
+            const lines = csv.trim().split('\n');
+            const headers = lines[0].split(',');
+            return lines.slice(1).map(line => {
+                const values = line.split(',');
+                const obj = {};
+                headers.forEach((header, index) => {
+                    obj[header] = values[index];
+                });
+                return obj;
+            });
+        }
+
+        // Find next demo
+        function findNextDemo() {
+            const now = new Date();
+            const demos = scheduleData.map(item => {
+                const [year, month, day] = item.date.split('-');
+                const [hour, minute] = item.time.split(':');
+                return new Date(year, month - 1, day, hour, minute);
+            }).filter(demo => demo > now).sort((a, b) => a - b);
+            
+            return demos[0] || null;
+        }
+
+        // Format countdown
+        function formatCountdown(ms) {
+            const hours = Math.floor(ms / (1000 * 60 * 60));
+            const minutes = Math.floor((ms % (1000 * 60 * 60)) / (1000 * 60));
+            const seconds = Math.floor((ms % (1000 * 60)) / 1000);
+            
+            return `${hours.toString().padStart(2, '0')}:${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}`;
+        }
+
+        // Apply language distortion
+        function applyDistortion(text) {
+            if (!isDistortionEnabled) return text;
+            
+            // Check if we have a distorted translation
+            if (distortedTranslations[text]) {
+                return distortedTranslations[text];
+            }
+            
+            // Check if we have a regular translation
+            if (translations[text]) {
+                return translations[text];
+            }
+            
+            return text;
+        }
+
+        // Update countdown
+        function updateCountdown() {
+            if (!nextDemo) {
+                document.getElementById('countdown').textContent = '--:--:--';
+                document.getElementById('nextTime').textContent = applyDistortion('No upcoming demonstrations');
+                return;
+            }
+
+            const now = new Date();
+            const timeDiff = nextDemo - now;
+
+            if (timeDiff <= 0) {
+                // Demo time has passed, find next one
+                nextDemo = findNextDemo();
+                updateScheduleDisplay();
+                return;
+            }
+
+            document.getElementById('countdown').textContent = formatCountdown(timeDiff);
+            
+            const timeString = nextDemo.toLocaleString('en-US', {
+                weekday: 'long',
+                year: 'numeric',
+                month: 'long',
+                day: 'numeric',
+                hour: '2-digit',
+                minute: '2-digit'
+            });
+            
+            document.getElementById('nextTime').textContent = timeString;
+        }
+
+        // Update schedule display
+        function updateScheduleDisplay() {
+            const now = new Date();
+            const scheduleGrid = document.getElementById('scheduleGrid');
+            scheduleGrid.innerHTML = '';
+
+            const demos = scheduleData.map(item => {
+                const [year, month, day] = item.date.split('-');
+                const [hour, minute] = item.time.split(':');
+                const demoTime = new Date(year, month - 1, day, hour, minute);
+                return { ...item, datetime: demoTime };
+            }).sort((a, b) => a.datetime - b.datetime);
+
+            demos.forEach((demo, index) => {
+                const item = document.createElement('div');
+                item.className = 'schedule-item';
+                
+                if (demo.datetime < now) {
+                    item.classList.add('past');
+                } else if (demo.datetime === nextDemo) {
+                    item.classList.add('next');
+                }
+
+                const dateStr = demo.datetime.toLocaleDateString('en-US', {
+                    weekday: 'short',
+                    month: 'short',
+                    day: 'numeric'
+                });
+                
+                const timeStr = demo.datetime.toLocaleTimeString('en-US', {
+                    hour: '2-digit',
+                    minute: '2-digit'
+                });
+
+                item.innerHTML = `
+                    <div class="schedule-date">${dateStr}</div>
+                    <div class="schedule-time">${timeStr}</div>
+                `;
+
+                scheduleGrid.appendChild(item);
+            });
+        }
+
+        // Toggle distortion
+        function toggleDistortion() {
+            isDistortionEnabled = !isDistortionEnabled;
+            const toggle = document.getElementById('distortionToggle');
+            toggle.classList.toggle('active');
+            
+            // Update text elements
+            document.getElementById('nextDemoLabel').textContent = applyDistortion('Next Demonstration In');
+            document.querySelector('.schedule-title').textContent = applyDistortion('Upcoming Demonstrations');
+            document.querySelector('.status').textContent = applyDistortion('SYSTEM ACTIVE');
+            document.querySelector('.subtitle').textContent = applyDistortion('Dog Robot Installation');
+            
+            // Add glitch effect
+            if (isDistortionEnabled) {
+                document.body.classList.add('glitch');
+                setTimeout(() => document.body.classList.remove('glitch'), 300);
+            }
+        }
+
+        // Randomly trigger distortion
+        function randomDistortion() {
+            if (Math.random() < 0.1) { // 10% chance every update
+                const elements = document.querySelectorAll('.next-demo-label, .schedule-title');
+                elements.forEach(el => {
+                    el.classList.add('glitch');
+                    setTimeout(() => el.classList.remove('glitch'), 300);
+                });
+            }
+        }
+
+        // Initialize
+        function init() {
+            scheduleData = parseCSV(scheduleCSV);
+            nextDemo = findNextDemo();
+            
+            updateScheduleDisplay();
+            updateCountdown();
+            
+            // Start countdown interval
+            countdownInterval = setInterval(() => {
+                updateCountdown();
+                randomDistortion();
+            }, 1000);
+            
+            // Setup distortion toggle
+            document.getElementById('distortionToggle').addEventListener('click', toggleDistortion);
+        }
+
+        // Start when page loads
+        window.addEventListener('load', init);
+    </script>
+</head>
+<body>
+    <div class="container">
+        <div class="status">SYSTEM ACTIVE</div>
+        
+        <header class="header">
+            <h1 class="title">Ars Electronica 2025</h1>
+            <p class="subtitle">Dog Robot Installation</p>
+        </header>
+
+        <div class="main-display">
+            <div class="next-demo-label" id="nextDemoLabel">Next Demonstration In</div>
+            <div class="countdown" id="countdown">--:--:--</div>
+            <div class="next-time" id="nextTime">Loading next demo time...</div>
+        </div>
+
+        <div class="controls">
+            <div class="toggle-container">
+                <span>German Distortion</span>
+                <div class="toggle" id="distortionToggle">
+                    <div class="toggle-slider"></div>
+                </div>
+            </div>
+        </div>
+
+        <div class="schedule-list">
+            <h2 class="schedule-title">Upcoming Demonstrations</h2>
+            <div class="schedule-grid" id="scheduleGrid"></div>
+        </div>
+    </div>
+</body>
+</html>

@@ -1,11 +1,38 @@
-# exhibitionDemoScheduleCountdown
+# Exhibition Demo Schedule Countdown
 
-# AIさんへの実装指示
-今、アルスエレクトロニカ2025で展示を行っています。
-展示は、犬型ロボットを使ったインスタレーションです。
-展示デモンストレーションの時間を１日に１回から50回まで登録して、次のデモンストレーションまでのカウントダウンと、次のデモンストレーションの時間を表示するページをつくりたいです。
-WEBでできれば１つのファイルにまとめてください。スケジュールのリストは、日付も複数登録できるようにして、CSVにしてください。CSVは、仮に午前１１時から午後６時まで１時間ごとというので、今日明日の分でつくってください。時間と日付はＣＳＶでは別の列にしてほしいです。
-小さめに、このあとのスケジュールの一覧も表示してほしいです。
-デザインは、黒ベースで、かっこいい感じにしてください。
-「次のデモンストレーションまで」というのと、カウントダウンをもっとも大きく表示してください。
-言語は、英語にして、時々ディストーションのような感じでドイツ語になるようにしたいです。この機能は、ON/OFFできるようにしてください。
+A sleek countdown display for the Ars Electronica 2025 dog robot installation demonstrations.
+
+## Features
+
+- **Real-time countdown** to the next demonstration
+- **Schedule display** showing all upcoming demos
+- **German distortion mode** with glitch effects (toggleable)
+- **Responsive design** optimized for exhibition displays
+- **CSV-based scheduling** for easy management
+
+## Demo Schedule
+
+The system displays demonstrations from 11:00 AM to 6:00 PM hourly. Schedule data is stored in `schedule.csv` with separate columns for date and time.
+
+## Usage
+
+1. Open `index.html` in any modern web browser
+2. The page will automatically display the countdown to the next demo
+3. Toggle "German Distortion" for linguistic glitch effects
+4. Schedule automatically updates to show upcoming demonstrations
+
+## Technical Details
+
+- Single HTML file with embedded CSS and JavaScript
+- CSV parsing for schedule data
+- Real-time countdown updates every second
+- Responsive grid layout for schedule display
+- Cyberpunk-inspired black theme with neon accents
+
+## Files
+
+- `index.html` - Main application (self-contained)
+- `schedule.csv` - Demo schedule data
+- `README.md` - This documentation
+
+Built for the Ars Electronica 2025 exhibition featuring innovative dog robot installations.
