@@ -229,7 +229,7 @@
 
         // Find next demo
         function findNextDemo() {
-            const now = new Date();
+            const now = new Date(new Date().toLocaleString("en-US", {timeZone: "Europe/Vienna"}));
             const demos = scheduleData.map(item => {
                 const [year, month, day] = item.date.split('-');
                 const [hour, minute] = item.time.split(':');
@@ -255,7 +255,7 @@
                 return;
             }
 
-            const now = new Date();
+            const now = new Date(new Date().toLocaleString("en-US", {timeZone: "Europe/Vienna"}));
             const timeDiff = nextDemo - now;
 
             if (timeDiff <= 0) {
@@ -277,7 +277,7 @@
 
         // Update schedule display
         function updateScheduleDisplay() {
-            const now = new Date();
+            const now = new Date(new Date().toLocaleString("en-US", {timeZone: "Europe/Vienna"}));
             const scheduleGrid = document.getElementById('scheduleGrid');
             scheduleGrid.innerHTML = '';
 
