@@ -361,15 +361,15 @@
                 const [hour, minute] = item.time.split(':');
                 const demoTime = new Date(year, month - 1, day, hour, minute);
                 return { ...item, datetime: demoTime };
-            }).sort((a, b) => a.datetime - b.datetime);
+            }).filter(demo => demo.datetime >= now)
+              .sort((a, b) => a.datetime - b.datetime)
+              .slice(0, 6); // Show only next 6 demonstrations to fit in frame
 
             demos.forEach((demo, index) => {
                 const item = document.createElement('div');
                 item.className = 'schedule-item';
                 
-                if (demo.datetime < now) {
-                    item.classList.add('past');
-                } else if (demo.datetime === nextDemo) {
+                if (demo.datetime.getTime() === nextDemo?.getTime()) {
                     item.classList.add('next');
                 }
 
