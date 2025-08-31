@@ -15,26 +15,30 @@
             font-family: 'Courier New', monospace;
             background: linear-gradient(135deg, #0a0a0a 0%, #1a1a1a 100%);
             color: #ffffff;
-            min-height: 100vh;
+            height: 100vh;
             overflow-x: hidden;
+            overflow-y: auto;
         }
 
         .container {
-            max-width: 1200px;
+            width: 100%;
+            height: 100vh;
             margin: 0 auto;
-            padding: 2rem;
+            padding: 3rem 4rem;
+            display: flex;
+            flex-direction: column;
         }
 
         .header {
             text-align: center;
-            margin-bottom: 3rem;
+            margin-bottom: 2rem;
             position: relative;
         }
 
         .header::before {
             content: '';
             position: absolute;
-            top: -20px;
+            top: -15px;
             left: 50%;
             transform: translateX(-50%);
             width: 100px;
@@ -48,42 +52,45 @@
             to { box-shadow: 0 0 20px #ff0080, 0 0 30px #0080ff; }
         }
 
+        .event-title {
+            font-size: 0.9rem;
+            color: #888;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 0.5rem;
+        }
+
         .title {
-            font-size: 2.5rem;
+            font-size: 3.5rem;
             font-weight: bold;
             text-transform: uppercase;
-            letter-spacing: 3px;
-            margin-bottom: 0.5rem;
+            letter-spacing: 5px;
+            margin-bottom: 1rem;
             background: linear-gradient(45deg, #00ff00, #0080ff, #ff0080);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             background-clip: text;
         }
 
-        .subtitle {
-            font-size: 1rem;
-            color: #888;
-            text-transform: uppercase;
-            letter-spacing: 2px;
-        }
 
         .main-display {
             background: rgba(0, 0, 0, 0.8);
             border: 2px solid #333;
             border-radius: 20px;
-            padding: 3rem;
-            margin-bottom: 3rem;
+            padding: 4rem;
+            margin-bottom: 2rem;
             text-align: center;
             position: relative;
             backdrop-filter: blur(10px);
+            flex-shrink: 0;
         }
 
         .next-demo-label {
-            font-size: 1.5rem;
+            font-size: 2rem;
             color: #00ff00;
-            margin-bottom: 1rem;
+            margin-bottom: 1.5rem;
             text-transform: uppercase;
-            letter-spacing: 2px;
+            letter-spacing: 3px;
             animation: pulse 2s infinite;
         }
 
@@ -93,91 +100,52 @@
         }
 
         .countdown {
-            font-size: 4rem;
+            font-size: 6rem;
             font-weight: bold;
             color: #ffffff;
-            margin: 1rem 0;
+            margin: 2rem 0;
             text-shadow: 0 0 20px #00ff00;
             font-family: 'Courier New', monospace;
         }
 
         .next-time {
-            font-size: 1.8rem;
+            font-size: 2.2rem;
             color: #0080ff;
-            margin-top: 1rem;
-        }
-
-        .controls {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            gap: 2rem;
-            margin-bottom: 3rem;
-        }
-
-        .toggle-container {
-            display: flex;
-            align-items: center;
-            gap: 1rem;
-        }
-
-        .toggle {
-            position: relative;
-            width: 60px;
-            height: 30px;
-            background: #333;
-            border-radius: 15px;
-            cursor: pointer;
-            transition: background 0.3s;
-        }
-
-        .toggle.active {
-            background: #00ff00;
-        }
-
-        .toggle-slider {
-            position: absolute;
-            top: 3px;
-            left: 3px;
-            width: 24px;
-            height: 24px;
-            background: #fff;
-            border-radius: 50%;
-            transition: transform 0.3s;
-        }
-
-        .toggle.active .toggle-slider {
-            transform: translateX(30px);
+            margin-top: 1.5rem;
         }
 
         .schedule-list {
             background: rgba(0, 0, 0, 0.6);
             border: 1px solid #333;
             border-radius: 15px;
-            padding: 2rem;
+            padding: 3rem;
             backdrop-filter: blur(5px);
+            flex: 1;
+            min-height: 0;
         }
 
         .schedule-title {
-            font-size: 1.5rem;
+            font-size: 2rem;
             color: #00ff00;
-            margin-bottom: 1.5rem;
+            margin-bottom: 2rem;
             text-align: center;
             text-transform: uppercase;
-            letter-spacing: 1px;
+            letter-spacing: 2px;
         }
 
         .schedule-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 1rem;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 1.5rem;
+            max-height: 400px;
+            overflow-y: auto;
         }
 
         .schedule-item {
             background: rgba(255, 255, 255, 0.05);
             border: 1px solid #444;
             border-radius: 10px;
-            padding: 1rem;
+            padding: 1.5rem;
             transition: all 0.3s ease;
         }
 
@@ -197,27 +165,15 @@
         }
 
         .schedule-date {
-            font-size: 0.9rem;
+            font-size: 1.1rem;
             color: #888;
             margin-bottom: 0.5rem;
         }
 
         .schedule-time {
-            font-size: 1.2rem;
+            font-size: 1.5rem;
             color: #0080ff;
             font-weight: bold;
-        }
-
-        .status {
-            position: absolute;
-            top: 20px;
-            right: 20px;
-            font-size: 0.8rem;
-            color: #00ff00;
-            background: rgba(0, 0, 0, 0.8);
-            padding: 0.5rem 1rem;
-            border-radius: 20px;
-            border: 1px solid #00ff00;
         }
 
         .glitch {
@@ -233,44 +189,37 @@
             100% { transform: translate(0); }
         }
 
-        @media (max-width: 768px) {
-            .countdown {
-                font-size: 2.5rem;
-            }
-            
-            .title {
-                font-size: 2rem;
-            }
-            
-            .controls {
-                flex-direction: column;
-                gap: 1rem;
-            }
+        /* Scrollbar styling for schedule grid */
+        .schedule-grid::-webkit-scrollbar {
+            width: 8px;
+        }
+
+        .schedule-grid::-webkit-scrollbar-track {
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 4px;
+        }
+
+        .schedule-grid::-webkit-scrollbar-thumb {
+            background: #00ff00;
+            border-radius: 4px;
+        }
+
+        .schedule-grid::-webkit-scrollbar-thumb:hover {
+            background: #00cc00;
         }
     </style>
 </head>
 <body>
     <div class="container">
-        <div class="status">SYSTEM ACTIVE</div>
-        
         <header class="header">
-            <h1 class="title">Ars Electronica 2025</h1>
-            <p class="subtitle">Dog Robot Installation</p>
+            <p class="event-title">Ars Electronica 2025</p>
+            <h1 class="title">Dog on a leash</h1>
         </header>
 
         <div class="main-display">
             <div class="next-demo-label" id="nextDemoLabel">Next Demonstration In</div>
             <div class="countdown" id="countdown">--:--:--</div>
             <div class="next-time" id="nextTime">Loading next demo time...</div>
-        </div>
-
-        <div class="controls">
-            <div class="toggle-container">
-                <span>German Distortion</span>
-                <div class="toggle" id="distortionToggle">
-                    <div class="toggle-slider"></div>
-                </div>
-            </div>
         </div>
 
         <div class="schedule-list">
@@ -280,6 +229,9 @@
     </div>
 
     <script>
+        // Configuration - Set to true for German distortion mode
+        const ENABLE_GERMAN_DISTORTION = true;
+
         // CSV data for demo schedules (today and tomorrow, 11 AM to 6 PM hourly)
         const scheduleCSV = `date,time
 2025-01-13,11:00
@@ -302,19 +254,14 @@
         // German translations and distortions
         const translations = {
             'Next Demonstration In': 'Nächste Demonstration in',
-            'Upcoming Demonstrations': 'Kommende Demonstrationen',
-            'SYSTEM ACTIVE': 'SYSTEM AKTIV',
-            'Dog Robot Installation': 'Hunderoboter Installation'
+            'Upcoming Demonstrations': 'Kommende Demonstrationen'
         };
 
         const distortedTranslations = {
             'Next Demonstration In': 'Nächstə Dəmonstrαtion ιn',
-            'Upcoming Demonstrations': 'Komməndə Dəmonstrαtionən',
-            'SYSTEM ACTIVE': 'SYSTƏM ΑKTIV',
-            'Dog Robot Installation': 'Hundərobotər Instαllαtion'
+            'Upcoming Demonstrations': 'Komməndə Dəmonstrαtionən'
         };
 
-        let isDistortionEnabled = false;
         let scheduleData = [];
         let nextDemo = null;
         let countdownInterval = null;
@@ -356,7 +303,7 @@
 
         // Apply language distortion
         function applyDistortion(text) {
-            if (!isDistortionEnabled) return text;
+            if (!ENABLE_GERMAN_DISTORTION) return text;
             
             // Check if we have a distorted translation
             if (distortedTranslations[text]) {
@@ -446,28 +393,9 @@
             });
         }
 
-        // Toggle distortion
-        function toggleDistortion() {
-            isDistortionEnabled = !isDistortionEnabled;
-            const toggle = document.getElementById('distortionToggle');
-            toggle.classList.toggle('active');
-            
-            // Update text elements
-            document.getElementById('nextDemoLabel').textContent = applyDistortion('Next Demonstration In');
-            document.querySelector('.schedule-title').textContent = applyDistortion('Upcoming Demonstrations');
-            document.querySelector('.status').textContent = applyDistortion('SYSTEM ACTIVE');
-            document.querySelector('.subtitle').textContent = applyDistortion('Dog Robot Installation');
-            
-            // Add glitch effect
-            if (isDistortionEnabled) {
-                document.body.classList.add('glitch');
-                setTimeout(() => document.body.classList.remove('glitch'), 300);
-            }
-        }
-
         // Randomly trigger distortion
         function randomDistortion() {
-            if (Math.random() < 0.1) { // 10% chance every update
+            if (ENABLE_GERMAN_DISTORTION && Math.random() < 0.1) { // 10% chance every update
                 const elements = document.querySelectorAll('.next-demo-label, .schedule-title');
                 elements.forEach(el => {
                     el.classList.add('glitch');
@@ -480,6 +408,10 @@
         function init() {
             scheduleData = parseCSV(scheduleCSV);
             nextDemo = findNextDemo();
+            
+            // Apply initial language settings
+            document.getElementById('nextDemoLabel').textContent = applyDistortion('Next Demonstration In');
+            document.querySelector('.schedule-title').textContent = applyDistortion('Upcoming Demonstrations');
             
             updateScheduleDisplay();
             updateCountdown();
@@ -519,9 +451,6 @@
                 <div class="toggle" id="distortionToggle">
                     <div class="toggle-slider"></div>
                 </div>
-            </div>
-        </div>
-
         <div class="schedule-list">
             <h2 class="schedule-title">Upcoming Demonstrations</h2>
             <div class="schedule-grid" id="scheduleGrid"></div>
