@@ -154,7 +154,6 @@
         </header>
 
         <div class="main-display">
-            <div class="next-performance-label">Next performance starts at</div>
             <div class="schedule-info" id="scheduleInfo">Loading...</div>
             <div class="countdown-label">in</div>
             <div class="countdown" id="countdown">--:--:--</div>
@@ -351,10 +350,6 @@
             nextDemo = findNextDemo();
             
             // Set to English by default
-            document.querySelector('.next-performance-label').textContent = 'Next performance starts at';
-            
-            // Store original texts for distortion effects
-            originalTexts['Next performance starts at'] = 'Next performance starts at';
             
             updateCountdown();
             
