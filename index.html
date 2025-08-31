@@ -18,8 +18,7 @@
             height: 100vh;
             margin: 0;
             padding: 0;
-            overflow-x: hidden;
-            overflow-y: auto;
+            overflow: hidden;
             position: relative;
             display: flex;
             flex-direction: column;
@@ -42,26 +41,28 @@
             display: flex;
             flex-direction: column;
             height: 100vh;
-            padding: 20px 40px;
+            padding: 1.5vh 2vw;
         }
 
         .header {
-            flex: 0 0 auto;
-            margin-bottom: 15px;
+            flex: 0 0 15vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
             text-align: center;
         }
 
         .title {
-            font-size: 8vw;
+            font-size: 6.5vw;
             font-weight: 900;
             text-transform: uppercase;
-            letter-spacing: 0.3vw;
+            letter-spacing: 0.2vw;
             margin: 0;
             color: #ffffff;
             text-align: center;
-            line-height: 1.1;
+            line-height: 1;
             max-width: 100%;
-            word-spacing: 0.4vw;
+            word-spacing: 0.3vw;
         }
 
         .main-display {
@@ -70,47 +71,48 @@
             flex-direction: column;
             justify-content: center;
             align-items: center;
-            gap: 1.2rem;
+            gap: 3vh;
+            padding: 2vh 0;
         }
 
         .next-performance-label {
-            font-size: 2rem;
+            font-size: 3.5vh;
             color: #ffffff;
             text-transform: uppercase;
-            letter-spacing: 3px;
+            letter-spacing: 0.3vw;
             font-weight: 600;
             text-align: center;
             margin: 0;
         }
 
         .schedule-info {
-            font-size: 3.5rem;
+            font-size: 8vh;
             color: #ff4444;
             font-weight: 600;
             text-align: center;
             margin: 0;
-            letter-spacing: 1px;
+            letter-spacing: 0.2vw;
         }
 
         .countdown-label {
-            font-size: 2rem;
+            font-size: 3.5vh;
             color: #ffffff;
             text-transform: uppercase;
-            letter-spacing: 2px;
+            letter-spacing: 0.3vw;
             font-weight: 600;
             text-align: center;
             margin: 0;
         }
 
         .countdown {
-            font-size: 12rem;
+            font-size: 18vh;
             font-weight: 900;
             color: #ffffff;
             font-family: 'Courier New', monospace;
             text-align: center;
             margin: 0;
             line-height: 1;
-            letter-spacing: 1px;
+            letter-spacing: 0.1vw;
         }
 
         .glitch {
@@ -126,56 +128,16 @@
             100% { transform: translate(0); }
         }
 
-        /* Optimize for Full HD (1920x1080) exhibition displays */
-        @media (max-height: 1080px) {
-            .container {
-                padding: 15px 30px;
-            }
-            .main-display {
-                gap: 1.5rem;
-            }
+        /* Ensure full HD compatibility - maintain proportions */
+        @media (max-height: 1080px) and (max-width: 1920px) {
             .title {
-                font-size: 2.8rem;
-            }
-            .next-performance-label {
-                font-size: 1.8rem;
-            }
-            .schedule-info {
-                font-size: 3rem;
-            }
-            .countdown-label {
-                font-size: 1.8rem;
+                font-size: 6.2vw;
             }
             .countdown {
-                font-size: 10rem;
+                font-size: 16vh;
             }
-        }
-
-        /* Smaller screen adjustments */
-        @media (max-width: 1600px) {
-            .container { 
-                padding: 15px 25px; 
-            }
-            .title { 
-                font-size: 2.4rem; 
-                letter-spacing: 1px; 
-            }
-            .next-performance-label { 
-                font-size: 1.6rem; 
-                letter-spacing: 2px; 
-            }
-            .schedule-info { 
-                font-size: 2.8rem; 
-            }
-            .countdown-label { 
-                font-size: 1.6rem; 
-                letter-spacing: 2px; 
-            }
-            .countdown { 
-                font-size: 8rem; 
-            }
-            .main-display { 
-                gap: 1.2rem; 
+            .schedule-info {
+                font-size: 7vh;
             }
         }
 
@@ -306,8 +268,7 @@
             
             const timeString = nextDemo.toLocaleTimeString('en-US', {
                 hour: 'numeric',
-                minute: '2-digit',
-                hour12: true
+                minute: '2-digit'
             });
             
             document.getElementById('scheduleInfo').textContent = timeString;
