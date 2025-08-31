@@ -13,8 +13,8 @@
 
         body {
             font-family: 'JetBrains Mono', 'Consolas', 'Monaco', 'Courier New', monospace;
-            background: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%);
-            color: #1e293b;
+            background: #000000;
+            color: #ffffff;
             height: 100vh;
             overflow-x: hidden;
             overflow-y: auto;
@@ -28,9 +28,7 @@
             left: 0;
             width: 100%;
             height: 100%;
-            background: 
-                radial-gradient(circle at 20% 20%, rgba(139, 69, 255, 0.03) 0%, transparent 50%),
-                radial-gradient(circle at 80% 80%, rgba(59, 130, 246, 0.03) 0%, transparent 50%);
+            background: #000000;
             pointer-events: none;
             z-index: -1;
         }
@@ -52,7 +50,7 @@
 
         .event-title {
             font-size: 1.5rem;
-            color: #8b45ff;
+            color: #ffffff;
             text-transform: uppercase;
             letter-spacing: 3px;
             margin-bottom: 0.5rem;
@@ -65,35 +63,26 @@
             text-transform: uppercase;
             letter-spacing: 5px;
             margin-bottom: 1rem;
-            color: #1e293b;
-            text-shadow: 
-                0 0 10px rgba(59, 130, 246, 0.3),
-                0 0 20px rgba(59, 130, 246, 0.2),
-                0 0 30px rgba(59, 130, 246, 0.1);
-            border: 3px solid #3b82f6;
+            color: #ffffff;
+            border: 3px solid #ffffff;
             padding: 1rem 2rem;
-            background: rgba(59, 130, 246, 0.05);
+            background: #000000;
             border-radius: 12px;
         }
 
         .main-display {
-            background: rgba(255, 255, 255, 0.95);
-            border: 3px solid #3b82f6;
+            background: #000000;
+            border: 3px solid #ffffff;
             border-radius: 20px;
             padding: 3rem;
-            margin-bottom: 0.5rem;
             text-align: center;
             position: relative;
-            backdrop-filter: blur(10px);
-            flex: 2;
-            box-shadow: 
-                0 10px 30px rgba(59, 130, 246, 0.1),
-                0 0 0 1px rgba(59, 130, 246, 0.1);
+            flex: 1;
         }
 
         .next-demo-label {
             font-size: 6rem;
-            color: #8b45ff;
+            color: #ffffff;
             margin-bottom: 1rem;
             text-transform: uppercase;
             letter-spacing: 3px;
@@ -103,110 +92,16 @@
         .countdown {
             font-size: 14rem;
             font-weight: bold;
-            color: #1e293b;
+            color: #ffffff;
             margin: 1rem 0;
-            text-shadow: 0 0 20px rgba(59, 130, 246, 0.3);
             font-family: 'Courier New', monospace;
         }
 
         .next-time {
             font-size: 4rem;
-            color: #6366f1;
+            color: #ffffff;
             margin-top: 1rem;
             font-weight: 500;
-        }
-
-        .schedule-list {
-            background: rgba(255, 255, 255, 0.9);
-            border: 2px solid #6366f1;
-            border-radius: 15px;
-            padding: 0.8rem;
-            backdrop-filter: blur(10px);
-            flex: 1;
-            min-height: 0;
-            box-shadow: 
-                0 8px 25px rgba(139, 69, 255, 0.1),
-                0 0 0 1px rgba(139, 69, 255, 0.05);
-        }
-
-        .schedule-title {
-            font-size: 2.5rem;
-            color: #8b45ff;
-            margin-bottom: 0.5rem;
-            text-align: center;
-            text-transform: uppercase;
-            letter-spacing: 2px;
-            font-weight: 700;
-        }
-
-        .schedule-grid {
-            display: flex;
-            flex-direction: row;
-            justify-content: space-around;
-            gap: 0.5rem;
-            flex-wrap: nowrap;
-            overflow-x: auto;
-        }
-
-        .schedule-item {
-            background: rgba(255, 255, 255, 0.8);
-            border: 2px solid #3b82f6;
-            border-radius: 8px;
-            padding: 1rem;
-            transition: all 0.3s ease;
-            flex: 1;
-            min-width: 150px;
-            text-align: center;
-            position: relative;
-            box-shadow: 0 4px 15px rgba(59, 130, 246, 0.1);
-        }
-
-        .schedule-item::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            border: 1px solid transparent;
-            background: rgba(139, 69, 255, 0.05);
-            border-radius: inherit;
-            opacity: 0;
-            transition: opacity 0.3s ease;
-        }
-
-        .schedule-item:hover {
-            border-color: #8b45ff;
-            transform: translateY(-2px);
-            box-shadow: 0 8px 25px rgba(139, 69, 255, 0.3);
-        }
-
-        .schedule-item:hover::before {
-            opacity: 1;
-        }
-
-        .schedule-item.next {
-            border-color: #8b45ff;
-            background: rgba(139, 69, 255, 0.1);
-            box-shadow: 0 0 20px rgba(139, 69, 255, 0.4);
-        }
-
-        .schedule-item.past {
-            opacity: 0.5;
-        }
-
-        .schedule-date {
-            font-size: 1.3rem;
-            color: #64748b;
-            margin-bottom: 0.5rem;
-            font-weight: 400;
-        }
-
-        .schedule-time {
-            font-size: 1.8rem;
-            color: #3b82f6;
-            font-weight: bold;
-            text-shadow: 0 0 8px rgba(59, 130, 246, 0.3);
         }
 
         .glitch {
@@ -252,11 +147,6 @@
             <div class="countdown" id="countdown">--:--:--</div>
             <div class="next-time" id="nextTime">Loading next demo time...</div>
         </div>
-
-        <div class="schedule-list">
-            <h2 class="schedule-title">Upcoming Performances</h2>
-            <div class="schedule-grid" id="scheduleGrid"></div>
-        </div>
     </div>
 
     <script>
@@ -301,13 +191,11 @@
 
         // German translations and distortions
         const translations = {
-            'Next Performance In': 'Nächste Performance in',
-            'Upcoming Performances': 'Kommende Performances'
+            'Next Performance In': 'Nächste Performance in'
         };
 
         const distortedTranslations = {
-            'Next Performance In': 'Nächstə Pərfσrmαncə ιn',
-            'Upcoming Performances': 'Komməndə Pərfσrmαncəs'
+            'Next Performance In': 'Nächstə Pərfσrmαncə ιn'
         };
 
         let scheduleData = [];
@@ -427,7 +315,7 @@
         // Randomly trigger distortion
         function randomDistortion() {
             if (ENABLE_GERMAN_DISTORTION && Math.random() < 0.05) { // 5% chance every update
-                const elements = document.querySelectorAll('.next-demo-label, .schedule-title');
+                const elements = document.querySelectorAll('.next-demo-label');
                 elements.forEach(el => {
                     // Store original text
                     const originalText = el.textContent;
@@ -456,13 +344,10 @@
             
             // Set to English by default
             document.getElementById('nextDemoLabel').textContent = 'Next Performance In';
-            document.querySelector('.schedule-title').textContent = 'Upcoming Performances';
             
             // Store original texts for distortion effects
             originalTexts['Next Performance In'] = 'Next Performance In';
-            originalTexts['Upcoming Performances'] = 'Upcoming Performances';
             
-            updateScheduleDisplay();
             updateCountdown();
             
             // Start countdown interval
