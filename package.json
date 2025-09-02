@@ -8,5 +8,8 @@
     "build": "vite build",
     "preview": "vite preview"
   },
-  "type": "module"
+  "type": "module",
+  "devDependencies": {
+    "vite": "^7.1.4"
+  }
 }
