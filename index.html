@@ -282,9 +282,16 @@
 
         // Update countdown
         function updateCountdown() {
+            var countdownElement = document.getElementById('countdown');
+            var scheduleInfoElement = document.getElementById('scheduleInfo');
+            
+            if (!countdownElement || !scheduleInfoElement) {
+                return; // Elements not ready yet
+            }
+            
             if (!nextDemo) {
-                document.getElementById('countdown').textContent = '--:--:--';
-                document.getElementById('nextTime').textContent = 'No upcoming performances';
+                countdownElement.textContent = '--:--:--';
+                scheduleInfoElement.textContent = 'No upcoming performances';
                 return;
             }
 
@@ -298,14 +305,14 @@
                 return;
             }
 
-            document.getElementById('countdown').textContent = formatCountdown(timeDiff);
+            countdownElement.textContent = formatCountdown(timeDiff);
             
             const timeString = nextDemo.toLocaleTimeString('en-US', {
                 hour: 'numeric',
                 minute: '2-digit'
             });
             
-            document.getElementById('scheduleInfo').textContent = timeString;
+            scheduleInfoElement.textContent = timeString;
         }
 
         // Update schedule display
@@ -377,6 +384,12 @@
 
         // Initialize
         function init() {
+            // Wait for DOM to be fully loaded
+            if (!document.getElementById('countdown') || !document.getElementById('scheduleInfo')) {
+                setTimeout(init, 100);
+                return;
+            }
+            
             scheduleData = parseCSV(scheduleCSV);
             nextDemo = findNextDemo();
             
