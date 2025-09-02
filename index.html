@@ -351,13 +351,13 @@
             
             updateCountdown();
             
-            // Start countdown interval
-            countdownInterval = setInterval(() => {
+                var container = document.querySelector('.container');
+            countdownInterval = setInterval(function() {
                 updateCountdown();
                 randomDistortion();
             }, 1000);
         }
-
+                var container = document.querySelector('.container');
         // Start when page loads
         window.addEventListener('load', init);
     </script>
