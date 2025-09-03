@@ -163,74 +163,74 @@
         // Configuration - Set to true to enable occasional German distortion effects
         const ENABLE_GERMAN_DISTORTION = false;
 
-        // CSV data for demo schedules (today and tomorrow, 11 AM to 6 PM hourly)
-        const scheduleCSV = `date,time
-2025-09-02,10:45
-2025-09-02,11:30
-2025-09-02,12:15
-2025-09-02,13:00
-2025-09-02,13:45
-2025-09-02,14:30
-2025-09-02,15:15
-2025-09-02,16:00
-2025-09-02,16:45
-2025-09-02,17:30
-2025-09-02,18:15
-2025-09-03,10:45
-2025-09-03,11:30
-2025-09-03,12:15
-2025-09-03,13:00
-2025-09-03,13:45
-2025-09-03,14:30
-2025-09-03,15:15
-2025-09-03,16:00
-2025-09-03,16:45
-2025-09-03,17:30
-2025-09-03,18:15
-2025-09-04,10:45
-2025-09-04,11:30
-2025-09-04,12:15
-2025-09-04,13:00
-2025-09-04,13:45
-2025-09-04,14:30
-2025-09-04,15:15
-2025-09-04,16:00
-2025-09-04,16:45
-2025-09-04,17:30
-2025-09-04,18:15
-2025-09-05,10:45
-2025-09-05,11:30
-2025-09-05,12:15
-2025-09-05,13:00
-2025-09-05,13:45
-2025-09-05,14:30
-2025-09-05,15:15
-2025-09-05,16:00
-2025-09-05,16:45
-2025-09-05,17:30
-2025-09-05,18:15
-2025-09-06,10:45
-2025-09-06,11:30
-2025-09-06,12:15
-2025-09-06,13:00
-2025-09-06,13:45
-2025-09-06,14:30
-2025-09-06,15:15
-2025-09-06,16:00
-2025-09-06,16:45
-2025-09-06,17:30
-2025-09-06,18:15
-2025-09-07,10:45
-2025-09-07,11:30
-2025-09-07,12:15
-2025-09-07,13:00
-2025-09-07,13:45
-2025-09-07,14:30
-2025-09-07,15:15
-2025-09-07,16:00
-2025-09-07,16:45
-2025-09-07,17:30
-2025-09-07,18:15`;
+        // CSV data for demo schedules with staff assignments
+        const scheduleCSV = `date,time,robot_operator,site_manager
+2025-09-02,10:45,Karakami,Koyama
+2025-09-02,11:30,Karakami,Koyama
+2025-09-02,12:15,Karakami,Koyama
+2025-09-02,13:00,Karakami,Koyama
+2025-09-02,13:45,Karakami,Koyama
+2025-09-02,14:30,Koyama,Saito
+2025-09-02,15:15,Koyama,Saito
+2025-09-02,16:00,Koyama,Saito
+2025-09-02,16:45,Koyama,Saito
+2025-09-02,17:30,Koyama,Saito
+2025-09-02,18:15,Koyama,Saito
+2025-09-03,10:45,Saito,Karakami
+2025-09-03,11:30,Saito,Karakami
+2025-09-03,12:15,Saito,Karakami
+2025-09-03,13:00,Saito,Karakami
+2025-09-03,13:45,Saito,Karakami
+2025-09-03,14:30,Karakami,Koyama
+2025-09-03,15:15,Karakami,Koyama
+2025-09-03,16:00,Karakami,Koyama
+2025-09-03,16:45,Karakami,Koyama
+2025-09-03,17:30,Karakami,Koyama
+2025-09-03,18:15,Karakami,Koyama
+2025-09-04,10:45,Koyama,Saito
+2025-09-04,11:30,Koyama,Saito
+2025-09-04,12:15,Koyama,Saito
+2025-09-04,13:00,Koyama,Saito
+2025-09-04,13:45,Koyama,Saito
+2025-09-04,14:30,Saito,Karakami
+2025-09-04,15:15,Saito,Karakami
+2025-09-04,16:00,Saito,Karakami
+2025-09-04,16:45,Saito,Karakami
+2025-09-04,17:30,Saito,Karakami
+2025-09-04,18:15,Saito,Karakami
+2025-09-05,10:45,Karakami,Koyama
+2025-09-05,11:30,Karakami,Koyama
+2025-09-05,12:15,Karakami,Koyama
+2025-09-05,13:00,Karakami,Koyama
+2025-09-05,13:45,Karakami,Koyama
+2025-09-05,14:30,Koyama,Saito
+2025-09-05,15:15,Koyama,Saito
+2025-09-05,16:00,Koyama,Saito
+2025-09-05,16:45,Koyama,Saito
+2025-09-05,17:30,Koyama,Saito
+2025-09-05,18:15,Koyama,Saito
+2025-09-06,10:45,Saito,Karakami
+2025-09-06,11:30,Saito,Karakami
+2025-09-06,12:15,Saito,Karakami
+2025-09-06,13:00,Saito,Karakami
+2025-09-06,13:45,Saito,Karakami
+2025-09-06,14:30,Karakami,Koyama
+2025-09-06,15:15,Karakami,Koyama
+2025-09-06,16:00,Karakami,Koyama
+2025-09-06,16:45,Karakami,Koyama
+2025-09-06,17:30,Karakami,Koyama
+2025-09-06,18:15,Karakami,Koyama
+2025-09-07,10:45,Koyama,Saito
+2025-09-07,11:30,Koyama,Saito
+2025-09-07,12:15,Koyama,Saito
+2025-09-07,13:00,Koyama,Saito
+2025-09-07,13:45,Koyama,Saito
+2025-09-07,14:30,Saito,Karakami
+2025-09-07,15:15,Saito,Karakami
+2025-09-07,16:00,Saito,Karakami
+2025-09-07,16:45,Saito,Karakami
+2025-09-07,17:30,Saito,Karakami
+2025-09-07,18:15,Saito,Karakami`;
 
         // German translations and distortions
         const translations = {
@@ -285,6 +285,7 @@
             var countdownElement = document.getElementById('countdown');
             var scheduleInfoElement = document.getElementById('scheduleInfo');
             
+            // Check if elements exist (for older browsers)
             if (!countdownElement || !scheduleInfoElement) {
                 return; // Elements not ready yet
             }
@@ -301,7 +302,6 @@
             if (timeDiff <= 0) {
                 // Demo time has passed, find next one
                 nextDemo = findNextDemo();
-                updateScheduleDisplay();
                 return;
             }
 
@@ -313,48 +313,6 @@
             });
             
             scheduleInfoElement.textContent = timeString;
-        }
-
-        // Update schedule display
-        function updateScheduleDisplay() {
-            const now = new Date(new Date().toLocaleString("en-US", {timeZone: "Europe/Vienna"}));
-            const scheduleGrid = document.getElementById('scheduleGrid');
-            scheduleGrid.innerHTML = '';
-
-            const demos = scheduleData.map(item => {
-                const [year, month, day] = item.date.split('-');
-                const [hour, minute] = item.time.split(':');
-                const demoTime = new Date(year, month - 1, day, hour, minute);
-                return { ...item, datetime: demoTime };
-            }).filter(demo => demo.datetime >= now)
-              .sort((a, b) => a.datetime - b.datetime)
-              .slice(0, 6); // Show only next 6 performances to fit in frame
-
-            demos.forEach((demo, index) => {
-                const item = document.createElement('div');
-                item.className = 'schedule-item';
-                
-                if (demo.datetime.getTime() === nextDemo?.getTime()) {
-
-                }
-                const dateStr = demo.datetime.toLocaleDateString('en-US', {
-                    weekday: 'short',
-                    month: 'short',
-                    day: 'numeric'
-                });
-                
-                const timeStr = demo.datetime.toLocaleTimeString('en-US', {
-                    hour: '2-digit',
-                    minute: '2-digit'
-                });
-
-                item.innerHTML = `
-                    <div class="schedule-date">${dateStr}</div>
-                    <div class="schedule-time">${timeStr}</div>
-                `;
-
-                scheduleGrid.appendChild(item);
-            });
         }
 
         // Randomly trigger distortion
@@ -385,7 +343,10 @@
         // Initialize
         function init() {
             // Wait for DOM to be fully loaded
-            if (!document.getElementById('countdown') || !document.getElementById('scheduleInfo')) {
+            var countdownElement = document.getElementById('countdown');
+            var scheduleInfoElement = document.getElementById('scheduleInfo');
+            
+            if (!countdownElement || !scheduleInfoElement) {
                 setTimeout(init, 100);
                 return;
             }
@@ -393,17 +354,14 @@
             scheduleData = parseCSV(scheduleCSV);
             nextDemo = findNextDemo();
             
-            // Set to English by default
-            
             updateCountdown();
             
-                var container = document.querySelector('.container');
             countdownInterval = setInterval(function() {
                 updateCountdown();
                 randomDistortion();
             }, 1000);
         }
-                var container = document.querySelector('.container');
+
         // Start when page loads
         window.addEventListener('load', init);
     </script>
