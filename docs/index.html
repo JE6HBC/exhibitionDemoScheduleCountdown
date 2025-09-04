@@ -274,10 +274,10 @@
 
         // Format countdown
         function formatCountdown(ms) {
-            var minutes = Math.floor((ms % (1000 * 60 * 60)) / (1000 * 60));
+            var totalMinutes = Math.floor(ms / (1000 * 60));
             var seconds = Math.floor((ms % (1000 * 60)) / 1000);
             
-            return (minutes < 10 ? '0' : '') + minutes + ':' + (seconds < 10 ? '0' : '') + seconds;
+            return totalMinutes + ':' + (seconds < 10 ? '0' : '') + seconds;
         }
 
         // Update countdown
